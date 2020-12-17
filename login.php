@@ -1,9 +1,10 @@
 <?php 
+  session_start();
   include("function/config.php");
 
-//   if(isset($_SESSION['id_user']) > 0) {
-//     header("location: dashboard.php");
-//   }
+  if(isset($_SESSION['id_user']) > 0) {
+    header("location: index.php");
+  }
 
   if (isset($_POST['login'])) {
     $username = htmlspecialchars($_POST['username']);
@@ -19,6 +20,7 @@
       $_SESSION['id_user'] = $row['id_user'];
       $_SESSION['nama'] = $row['nama'];
       $_SESSION['akses'] = $row['akses'];
+
       header("location: index.php");
     } else {
       header("location: login.php?pesan=gagal");
@@ -71,7 +73,7 @@
                      } else if($_GET['pesan'] == "logout"){
                            echo "<script type='text/javascript'>alert('Anda telah berhasil logout')</script>";
                      } else if($_GET['pesan'] == "belum_login"){
-                           echo "<script type='text/javascript'>alert('Anda harus login untuk mengakses halaman admin')</script>";
+                           echo "<script type='text/javascript'>alert('Anda harus login untuk mengakses halaman ini!')</script>";
                         }
                      } 
                      ?>

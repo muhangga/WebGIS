@@ -3,6 +3,10 @@
 include("function/config.php");
 include("component/header.php");
 
+if(!isset($_SESSION['id_user'])) {
+   header("location: login.php?pesan=belum_login");
+}
+
 $gid = $_GET['gid'];
 $sql = pg_query($koneksi, "SELECT * FROM indomaret WHERE gid='$gid'");
 $row = pg_fetch_assoc($sql);

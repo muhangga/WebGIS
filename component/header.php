@@ -23,11 +23,10 @@
    
 
     <!-- Datatable -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.css" /> -->
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script> -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/datatables/dataTables.bootstrap4.css">
-    <script src="assets/datatables/jquery.dataTable.js"></script>
-    <script src="assets/datatables/dataTables.bootstrap4.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
     <title>TA_GIS - Kelompok 1</title>
   </head>
@@ -48,18 +47,26 @@
           <div class="navbar-brand pt-5 text-center text-white mt-4" style="padding-left:10%;">
             Web Gis
           </div>
+
           <li class="nav-item mt-4">
             <a class="nav-link active" href="index.php" style="color: slategrey"
-              ><b><i class="fas fa-home pr-2 mb-3"></i> Dashboard</b></a>
+              ><b><i class="fas fa-tv pr-2 mb-3"></i> Dashboard</b></a>
           </li>
           <li class="nav-item">
             <a class="nav-link " href="map.php" style="color: slategrey"
-              ><b><i class="fas fa-map-marker-alt pr-3 mb-3"></i>Map</b></a>
+              ><b><i class="fas fa-map pr-3 mb-3"></i>Map</b></a>
           </li>
+          <?php if($_SESSION['akses'] === "admin") { ?>
           <li class="nav-item">
             <a class="nav-link" href="data_map.php" style="color: slategrey"
               ><b><i class="fas fa-edit pr-2 mb-3"></i>Data Master</b></a>
           </li>
+          <?php } else { ?>
+            <li class="nav-item">
+            <a class="nav-link" href="data_map.php" style="color: slategrey"
+              ><b><i class="fas fa-edit pr-2 mb-3"></i>Data Map</b></a>
+          </li>
+          <?php } ?>
           <li class="nav-item">
             <a class="nav-link" href="logout.php" style="color: slategrey"
               ><b><i class="fas fa-sign-out-alt pr-2"></i>Logout</b></a>

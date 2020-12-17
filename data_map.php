@@ -2,6 +2,10 @@
    require_once 'component/header.php';
    require_once 'function/config.php';
 
+   if(!isset($_SESSION['id_user'])) {
+    header("location: login.php?pesan=belum_login");
+  }
+
    if (isset($_POST['tambah_data'])) {
       $kecamatan = addslashes($_POST['kecamatan']);
       $x = addslashes($_POST['x']);
@@ -25,6 +29,8 @@
    <div class="h3 mt-5">
       Data Map
    </div>
+
+   <?php if($_SESSION['akses'] == "admin") : ?>
    <form action="" method="POST" style="font-size:12px;">
     <div class="row">
        <div class="col-md-6">
@@ -64,7 +70,7 @@
     </div>
     <button type="submit" class="btn btn-primary btn-block text-center mt-4 mb-2" name="tambah_data">Tambah Data</button>
    </form>
-
+<?php endif ?>
    <div class="py-0">
          <div class="card shadow mb-4 mt-4" style="font-size:12px;">
             <div class="card-body">
@@ -78,7 +84,9 @@
                       <th>Longitude</th>
                       <th>Nama Indomaret</th>
                       <th>Alamat</th>
+                      <?php if($_SESSION['akses'] === "admin") : ?>
                       <th>Aksi</th>
+                      <?php endif; ?>
                     </tr>
                   </thead>
 
@@ -95,23 +103,26 @@
                       <td><?= $row['y'] ?></td>
                       <td><?= $row['indomaret'] ?></td>
                       <td><?= $row['alamat'] ?></td>
+
+                      <?php if($_SESSION['akses'] == "admin") : ?>
                       <td width="15%">
                         <a href="edit_data.php?gid=<?= $row['gid'] ?>" class="btn btn-info btn-sm align-items-center" title="Edit"><i class="fas fa-edit" style="font-size:12px;"></i></a>
                         <a href="hapus.php?gid=<?= $row['gid'] ?>" class="btn btn-danger btn-sm align-items-center" title="Hapus"><i class="fas fa-trash" style="font-size:12px;" onclick="return confirm('Apakah anda yakin ingin menghapus data?');"></i></a>
                       </td>
+                      <?php endif; ?>
                    </tr>
                   <?php endwhile; ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
-       </div>
+        </div>
+      </div>
+    </div>
 </main>
 
 <script type="text/javascript">
-	$(document).ready( function() {
-		$('.display').DataTable();
-	});
+	$(document).ready(function() {
+    $('#dataTable').DataTable();
+} );
 </script>
 <?php require_once('component/footer.php'); ?>

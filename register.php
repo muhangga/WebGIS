@@ -1,9 +1,10 @@
 <?php
+   session_start();
    include "function/config.php";
 
-   // if(isset($_SESSION['id_user']) > 0) {
-   //    header("location: dashboard.php");
-   // }
+   if(isset($_SESSION['id_user']) > 0) {
+      header("location: index.php");
+   }
 
    if (isset($_POST['register'])) {
       $username = htmlspecialchars($_POST['username']);
@@ -26,7 +27,6 @@
               </script>";
       }
    }
-
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +43,11 @@
   <title>Register</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    
-    <!-- Font awesome -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+   <!-- Font awesome -->
+   <link href="assets/css/font-awesome.css" rel="stylesheet" />
 
 </head>
 

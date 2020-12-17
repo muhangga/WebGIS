@@ -2,6 +2,10 @@
 require_once 'component/header.php';
 require_once 'function/config.php';
 
+if(!isset($_SESSION['id_user'])) {
+    header("location: login.php?pesan=belum_login");
+}
+
 $alamat = pg_query($koneksi, "SELECT alamat FROM indomaret");
 $indomaret = pg_query($koneksi, "SELECT indomaret FROM indomaret");
 ?>
